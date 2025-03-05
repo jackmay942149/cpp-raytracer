@@ -20,5 +20,6 @@ class Ray{
 
   // Methods
   Vec3 color();
-  bool hitSphere(const Vec3&, float radius);
+  float hitSphere(const Vec3&, float radius);
+  Vec3 pointAtParameter(float t) const {return m_origin + (t*m_direction);}
 };

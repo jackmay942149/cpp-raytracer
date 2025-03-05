@@ -27,7 +27,7 @@ int main(){
       float v = float(j) / float(ny);
 
       // Define current ray and test it
-      Ray ray {origin, lowerLeftCorner + horizontal*u + vertical*v, 1.0f};
+      Ray ray {origin, lowerLeftCorner + u*(horizontal) + v*(vertical), 1.0f};
       Vec3 color = ray.color();
 
       // Output to file
