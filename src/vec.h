@@ -26,9 +26,11 @@ class Vec3 {
   Vec3 operator/(const float t) {return Vec3(m_vec3[0]/t, m_vec3[1]/t, m_vec3[2]/t);} // returns by value
   Vec3 operator*(const float t) {return Vec3(m_vec3[0]*t, m_vec3[1]*t, m_vec3[2]*t);} // returns by value
   Vec3 operator+(const Vec3 other) {return Vec3(m_vec3[0]+ other.x(), m_vec3[1]+ other.y(), m_vec3[2]+ other.z());}
+  Vec3 operator-(const Vec3 other) {return Vec3(m_vec3[0]- other.x(), m_vec3[1]- other.y(), m_vec3[2]- other.z());}
                     
   // Methods
   float length() {return sqrt(m_vec3[0]*m_vec3[0] + m_vec3[1]*m_vec3[1] + m_vec3[2]*m_vec3[2]);} // returns r-value
   Vec3 unit_vector() {return *this / this->length();} // returns by value
+  float dot(const Vec3 other){return this->x()*other.x() + this->y()*other.y() + this->z()*other.z();}
   
 };

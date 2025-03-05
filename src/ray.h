@@ -14,10 +14,11 @@ class Ray{
   Ray(Vec3 origin, Vec3 direction, float magnitude) {m_origin = {origin}; m_direction = {direction}; m_magnitude = magnitude;}
 
   // Getters
-  Vec3 origin() { return m_origin;}
-  Vec3 direction() {return m_direction;}
+  Vec3 origin() const { return m_origin;}
+  Vec3 direction() const {return m_direction;}
   float magnitude() {return m_magnitude;}
 
   // Methods
   Vec3 color();
+  bool hitSphere(const Vec3&, float radius);
 };
