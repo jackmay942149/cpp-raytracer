@@ -34,3 +34,6 @@ class Vec3 {
   float dot(const Vec3 other){return this->x()*other.x() + this->y()*other.y() + this->z()*other.z();}
   
 };
+
+// Cumatitive Operators
+Vec3 operator*(const float f, const Vec3&);
