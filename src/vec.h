@@ -36,5 +36,5 @@ class Vec3 {
   
 };
 
-// Cumatitive Operators
+// Commutative Operators
 Vec3 operator*(const float f, const Vec3&);
