@@ -7,12 +7,12 @@
 class Vec3 {
   private:
   // Members
-  std::array<float, 3> m_vec3 = {0, 0, 0};
+  std::array<float, 3> m_vec3;
   
   public:
   // Constructors
-  Vec3() {m_vec3 = {0, 0, 0};}
-  explicit Vec3(float x, float y, float z) {m_vec3 = {x, y, z};}
+  Vec3(): m_vec3{0, 0, 0}{};
+  explicit Vec3(float x, float y, float z): m_vec3{x, y, z}{};
 
   // Getters
   float x() const {return m_vec3[0];}
