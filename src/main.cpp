@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <random>
 #include "shape.h"
 #include "vec.h"
 #include "ray.h"
@@ -8,21 +7,13 @@
 #include "scene.h"
 #include "float.h"
 #include "camera.h"
-
-
-
-float random(float min, float max) {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> dis(min, max);
-    return dis(gen);
-};
+#include "rand.h"
 
 int main(){
   // Define # of coloumns and rows
   int nx = 1920/2;
   int ny = 1080/2;
-  int ns = 100;
+  int ns = 4;
   
   // Define output file
   std::ofstream outFile("res/example.ppm");
@@ -49,8 +40,8 @@ int main(){
       for (int s = 0; s < ns; s++){
         
         // Define current uv coord
-        float u = float(i + random(0.0f, 1.0f)) / float(nx);
-        float v = float(j + random(0.0f, 1.0f)) / float(ny);
+        float u = float(i + Rand::random(0.0f, 1.0f)) / float(nx);
+        float v = float(j + Rand::random(0.0f, 1.0f)) / float(ny);
 
         // Define current ray and test it
         Ray ray = cam.getRay(u, v);
