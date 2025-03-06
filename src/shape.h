@@ -3,10 +3,13 @@
 #include "ray.h"
 #include "vec.h"
 
+class Material;
+
 struct HitData {
   float t;
   Vec3 point;
   Vec3 normal;
+  Material* material;
 };
 
 class Shape {

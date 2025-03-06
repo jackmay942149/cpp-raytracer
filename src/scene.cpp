@@ -2,6 +2,7 @@
 #include "ray.h"
 #include "shape.h"
 #include "vec.h"
+#include "material.h"
 
 void Scene::add(Shape* shape){
   this->m_shapeList.push_back(shape);
@@ -22,10 +23,17 @@ bool Scene::hit(const Ray& ray, float tMin, float tMax, HitData& hitData){
   return hitSomething;
 }
 
-Vec3 Scene::rayTrace(const Ray& ray, float tMin, float tMax, HitData& hitData){
-  if (this->hit(ray, tMin, tMax, hitData)){
-    Vec3 target = hitData.point + hitData.normal + Vec::randInUnitSphere();
-    return 0.5*this->rayTrace(Ray(hitData.point, target, 1.0f), tMin, tMax, hitData);
+Vec3 Scene::rayTrace(const Ray& ray, float tMin, float tMax, HitData& hitData, int depth){
+  HitData hd;
+  if (this->hit(ray, tMin, tMax, hd)){
+    Ray scattered;
+    Vec3 attenuation;
+    if(depth < 50 && hd.material->scatter(ray, hd, attenuation, scattered)){ 
+      return (attenuation * Scene::rayTrace(scattered, tMin, tMax, hd, depth+1));
+    }
+    else {
+      return Vec3{0.0f, 0.0f, 0.0f};
+    }
   }
   else {
     Vec3 unit_direction = ray.direction().unit_vector();

@@ -1,5 +1,4 @@
 #include "sphere.h"
-#include <iostream>
 
 bool Sphere::hit(const Ray& ray, float tMin, float tMax, HitData& hitData) const{
   Vec3 oc = ray.origin() - this->m_centre;
@@ -17,6 +16,7 @@ bool Sphere::hit(const Ray& ray, float tMin, float tMax, HitData& hitData) const
     hitData.t = temp;
     hitData.point = ray.pointAtParameter(temp);
     hitData.normal = (hitData.point - this->m_centre)/this->m_radius;
+    hitData.material = this->m_material;
     return true;
   }
 
@@ -26,6 +26,7 @@ bool Sphere::hit(const Ray& ray, float tMin, float tMax, HitData& hitData) const
     hitData.t = temp;
     hitData.point = ray.pointAtParameter(temp);
     hitData.normal = (hitData.point - this->m_centre)/this->m_radius;  
+    hitData.material = this->m_material;
     return true;
   }
   return false;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "material.h"
 #include "shape.h"
 #include "vec.h"
 #include "ray.h"
@@ -10,10 +11,11 @@
 #include "rand.h"
 
 int main(){
+ 
   // Define # of coloumns and rows
   int nx = 1920/2;
   int ny = 1080/2;
-  int ns = 10;
+  int ns = 4;
   
   // Define output file
   std::ofstream outFile("res/example.ppm");
@@ -21,14 +23,14 @@ int main(){
   // Output to file
   outFile << "P3\n" << nx << " " << ny << "\n255\n";
 
-    // Define Scene
+  // Define Scene
   Camera cam;
-  Sphere s1 {Sphere(Vec3{0.0f, 0.0f, -1.0f}, 0.5f)};
-  Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f)};
+  Lambertian redMatte {Lambertian{Vec3{0.8f, 0.3f, 0.3f}}};
+  Sphere s1 {Sphere(Vec3{0.0f, 0.0f, -1.0f}, 0.5f, &redMatte)};
+  Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f, &redMatte)};
   Scene scene;
   scene.add(&s1);
   scene.add(&s2);
-    
 
   for (int j = ny-1; j >=0; j--){
     for (int i = 0; i < nx; i++){
@@ -45,7 +47,7 @@ int main(){
         Ray ray = cam.getRay(u, v);
         HitData hit;
 
-        color += scene.rayTrace(ray, 0.001f, 10000.0f, hit);
+        color += scene.rayTrace(ray, 0.001f, 10000.0f, hit, 0);
       }
 
       // Average color samples

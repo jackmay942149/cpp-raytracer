@@ -12,7 +12,7 @@ class Scene{
 
   void add(Shape* shape);
   bool hit(const Ray& ray, float tMin, float tMax, HitData& hitData);
-  Vec3 rayTrace(const Ray& ray, float tMin, float tMax, HitData& hitData);
+  Vec3 rayTrace(const Ray& ray, float tMin, float tMax, HitData& hitData, int depth);
 };
 
 

@@ -30,6 +30,7 @@ class Vec3 {
   Vec3 operator-(const Vec3 other) {return Vec3(m_vec3[0]- other.x(), m_vec3[1]- other.y(), m_vec3[2]- other.z());}
   Vec3 operator+=(const Vec3 other) {m_vec3[0] += other.x(); m_vec3[1] += other.y(); m_vec3[2] += other.z(); return *this;}
   Vec3 operator/=(const float a) {m_vec3[0] /= a; m_vec3[1] /= a; m_vec3[2] /= a; return *this;}
+  Vec3 operator*(const Vec3 other) const {return Vec3{m_vec3[0]*other.x(), m_vec3[1]*other.y(), m_vec3[2]*other.z()};}
                     
   // Methods
   float length() {return ::sqrt(m_vec3[0]*m_vec3[0] + m_vec3[1]*m_vec3[1] + m_vec3[2]*m_vec3[2]);} // returns r-value
