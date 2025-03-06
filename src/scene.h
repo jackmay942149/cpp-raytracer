@@ -1,5 +1,6 @@
 #pragma once
 #include "shape.h"
+#include "vec.h"
 #include <vector>
 
 class Scene{
@@ -11,6 +12,7 @@ class Scene{
 
   void add(Shape* shape);
   bool hit(const Ray& ray, float tMin, float tMax, HitData& hitData);
+  Vec3 rayTrace(const Ray& ray, float tMin, float tMax, HitData& hitData);
 };
 
 

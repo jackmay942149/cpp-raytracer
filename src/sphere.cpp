@@ -26,7 +26,6 @@ bool Sphere::hit(const Ray& ray, float tMin, float tMax, HitData& hitData) const
     hitData.t = temp;
     hitData.point = ray.pointAtParameter(temp);
     hitData.normal = (hitData.point - this->m_centre)/this->m_radius;  
-    std::cout << "hit and normal is:  r:" << hitData.normal.r() << ", g:" << hitData.normal.g() << ", b:" << hitData.normal.b() <<"\n";  
     return true;
   }
   return false;

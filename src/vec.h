@@ -32,11 +32,16 @@ class Vec3 {
   Vec3 operator/=(const float a) {m_vec3[0] /= a; m_vec3[1] /= a; m_vec3[2] /= a; return *this;}
                     
   // Methods
-  float length() {return sqrt(m_vec3[0]*m_vec3[0] + m_vec3[1]*m_vec3[1] + m_vec3[2]*m_vec3[2]);} // returns r-value
+  float length() {return ::sqrt(m_vec3[0]*m_vec3[0] + m_vec3[1]*m_vec3[1] + m_vec3[2]*m_vec3[2]);} // returns r-value
   Vec3 unit_vector() {return *this / this->length();} // returns by value
   float dot(const Vec3 other){return this->x()*other.x() + this->y()*other.y() + this->z()*other.z();}
+  void sqrt() {m_vec3[0] = ::sqrt(this->x()); m_vec3[1] = ::sqrt(this->y()); m_vec3[2] = ::sqrt(this->z());}
   
 };
 
 // Commutative Operators
 Vec3 operator*(const float f, const Vec3&);
+
+namespace Vec{
+  Vec3 randInUnitSphere();
+}
