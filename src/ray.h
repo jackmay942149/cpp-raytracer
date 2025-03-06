@@ -4,9 +4,9 @@
 class Ray{
   private:
   // Members
-  Vec3 m_origin {Vec3()};
-  Vec3 m_direction {Vec3()};
-  float m_magnitude {1.0f};
+  Vec3 m_origin;
+  Vec3 m_direction;
+  float m_magnitude;
 
   public:
   // Constructor

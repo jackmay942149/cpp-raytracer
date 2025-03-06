@@ -1,11 +1,12 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include "shape.h"
 #include "vec.h"
 #include "ray.h"
 #include "sphere.h"
 #include "scene.h"
 #include "float.h"
+#include "camera.h"
 
 int main(){
   // Define # of coloumns and rows
@@ -18,13 +19,8 @@ int main(){
   // Output to file
   outFile << "P3\n" << nx << " " << ny << "\n255\n";
 
-  // Define screen coords
-  Vec3 lowerLeftCorner {-2.0f, -1.0f, -1.0f};
-  Vec3 horizontal {4.0f, 0.0f, 0.0f};
-  Vec3 vertical {0.0f, 2.0f, 0.0f};
-  Vec3 origin {0.0f, 0.0f, 0.0f};
-
-  // Define Scene
+    // Define Scene
+  Camera cam;
   Sphere s1 {Sphere(Vec3{0.0f, 0.0f, -1.0f}, 0.5f)};
   Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f)};
   Sphere s3 {Sphere(Vec3(0.0f, 0.0f, -0.5f), 0.2f)};
@@ -41,7 +37,7 @@ int main(){
       float v = float(j) / float(ny);
 
       // Define current ray and test it
-      Ray ray {origin, lowerLeftCorner + u*(horizontal) + v*(vertical), 1.0f};
+      Ray ray = cam.getRay(u, v);
       HitData hit;
       Vec3 color;
       if (scene.hit(ray, 0.0f, 10000.0f, hit)){
