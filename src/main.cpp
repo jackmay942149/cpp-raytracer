@@ -23,11 +23,11 @@ int main(){
   // Output to file
   outFile << "P3\n" << nx << " " << ny << "\n255\n";
 
-  // Define Scene
+ // Define Scene
   Camera cam;
   Lambertian redMatte {Lambertian{Vec3{0.8f, 0.3f, 0.3f}}};
   Sphere s1 {Sphere(Vec3{0.0f, 0.0f, -1.0f}, 0.5f, &redMatte)};
-  Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f, &redMatte)};
+  Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f, new Lambertian{Vec3{0.8f, 0.8f, 0.0f}})};
   Scene scene;
   scene.add(&s1);
   scene.add(&s2);

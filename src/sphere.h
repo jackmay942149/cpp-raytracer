@@ -14,4 +14,6 @@ class Sphere : public Shape {
   Sphere(): m_centre{Vec3{0.0f, 0.0f, 0.0f}}, m_radius{0.0f}, m_material{}{};
   Sphere(Vec3 v, float r, Material* m): m_centre(v), m_radius(r), m_material{m}{};
   bool hit(const Ray& ray, float tMin, float tMax, HitData& hitData) const override;
+
+  ~Sphere(){delete m_material;}
 };
