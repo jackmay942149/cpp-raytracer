@@ -15,7 +15,7 @@ int main(){
   // Define # of coloumns and rows
   int nx = 1920/2;
   int ny = 1080/2;
-  int ns = 4;
+  int ns = 1;
   
   // Define output file
   std::ofstream outFile("res/example.ppm");
@@ -26,11 +26,21 @@ int main(){
  // Define Scene
   Camera cam;
   Lambertian redMatte {Lambertian{Vec3{0.8f, 0.3f, 0.3f}}};
+  Dielectric airMat {1.0f};
+  Dielectric glassMat {1.5f};
+  Dielectric diamondMat {2.4f};
+  
   Sphere s1 {Sphere(Vec3{0.0f, 0.0f, -1.0f}, 0.5f, &redMatte)};
   Sphere s2 {Sphere(Vec3{0.0f, -100.5f, -1.5f}, 100.0f, new Lambertian{Vec3{0.8f, 0.8f, 0.0f}})};
+  Sphere s3 {Sphere(Vec3{1.0f, 0.0f, -1.0f}, 0.5f, new Metal(Vec3{0.8f, 0.8f, 0.8f}, 0.3))};
+  Sphere s4 {Sphere(Vec3{-1.0f, 0.0f, -1.0f}, 0.5f, &glassMat)};
+  Sphere s5 {Sphere(Vec3{-1.0f, 0.0f, -1.0f}, -0.45f, &glassMat)};
   Scene scene;
   scene.add(&s1);
   scene.add(&s2);
+  scene.add(&s3);
+  scene.add(&s4);
+  scene.add(&s5);
 
   for (int j = ny-1; j >=0; j--){
     for (int i = 0; i < nx; i++){
