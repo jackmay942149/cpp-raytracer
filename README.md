@@ -1,6 +1,6 @@
 # C++ Raytracer
-Learning Raytracing in C++ with assistance from [Raytracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
-Requires g++ to build from source
+Learning Raytracing in C++ with assistance from [Raytracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html).
+Requires g++ to build from source.
 Requires ppm viewer, my personal suggestion is [GIMP](https://www.gimp.org/)
 
 ## **Compilation Steps (Requires g++):**
